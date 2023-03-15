@@ -1,12 +1,24 @@
 // * Display the current day at the top of the calender when a user opens the planner.
 $(document).ready(function (){
-    var timeArr = ["9 A.M.","10 A.M.","11 A.M.","12 P.M.","1 P.M.","2 P.M.","3 P.M.","4 P.M.","5 P.M."];
+  
+    //defininf the main container and current day elements as JQuery objects
+    var mainContainer = $('#container');
+    var currentDay = $('#currentDay');
 
-    var currentHour = moment ().format("dddd, MMMM Do");
+    //create an object representing today's date and time
+    var today = moment().format('dddd, MMMM Do');
 
-    $("#currentDay").text(now);
+    //Want to loop over the hours of the day from 9-17h
+    for(let i=9; i < 18; i++) {
 
-    console.log(currentHour);
+        //need to convert the hour to an integer and store it in a variable
+        var timeI = parseInt((mnoment(i, ['HH']).format ('H')));
+
+        
+    }
+
+
+    
 })
  
 // * Present timeblocks for standard business hours when the user scrolls down.
