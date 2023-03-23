@@ -12,16 +12,50 @@ $(document).ready(function (){
     for(let i=9; i < 18; i++) {
 
         //need to convert the hour to an integer and store it in a variable
-        var timeI = parseInt((mnoment(i, ['HH']).format ('H')));
+        var timeI = parseInt((moment(i, ['HH']).format ('H')));
 
+        //create a div to hold the time slots, an text box and a submit button
+
+        var table = $('<div>');
+
+        //another div for the time 
+   
+        var div =  $('<div>').addClass("hour");
+
+        //para element for time label 
+        var timeText = $("<p>").text(moment(i, ["HH"]).format ("h A"));
+        div.append(timeText);
+
+        //input element for users info for each time slot
+        var userInfo = $("<input>").val(localStorage.getItem(`ButtonClick${i-9}`));
+
+        // * Present timeblocks for standard business hours when the user scrolls down.
         
+        //class for the input element based on time
+
+        if (timeI < today) {
+            userInfo.addClass("past userinfo");
+        } else if (timeI === today) {
+            userInfo.addClass("present userinfo");
+        } else{
+            userInfo.addClass("future userinfo");
+        }
+        
+        //need to create a button for users to save info
+        const submitButton =$("<button>").addClass("saveBtn").text("Add").attr("buttonnum", i-9);
+
+        //nothing showing up so need to append the elements to the table and append the table to the main container
+
+        table.append(div, userInfo, submitButton);
+        mainContainer.append(table);
+
+
     }
 
 
     
-})
+});
  
-// * Present timeblocks for standard business hours when the user scrolls down.
  
 // * Color-code each timeblock based on past, present, and future when the timeblock is viewed.
  
