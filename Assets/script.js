@@ -6,10 +6,14 @@ $(document).ready(function (){
     var currentDay = $('#currentDay');
 
     //create an object representing today's date and time
-    var today = moment().format('dddd, MMMM Do');
+    var today = moment();
 
     //console logging to understand what the problem is
     console.log(today);
+
+    var currentHour = parseInt(today.format('H'));
+
+    currentDay.text(today.format('dddd, MMMM Do'));
 
     //Want to loop over the hours of the day from 9-17h
     for(let i=9; i < 18; i++) {
@@ -65,6 +69,17 @@ $(document).ready(function (){
         mainContainer.append(table);
 
         userInfo.val(localStorage.getItem('ButtonClick'+(i-1)));
+
+        // * Save the event in local storage when the save button is clicked in that timeblock.
+        $('.saveBtn').click(function(event){
+            const buttonPressed = this.getAttribute("buttonnum");
+
+            const relativeInput = $('#container').children().eq(buttonPressed).children().eq(1).val();
+
+
+            // * Persist events between refreshes of a page
+            localStorage.setItem(`ButtonClick${buttonPressed}`, relativeInput);
+        });
     }
 
 
@@ -76,6 +91,3 @@ $(document).ready(function (){
  
 // * Allow a user to enter an event when they click a timeblock
 
-// * Save the event in local storage when the save button is clicked in that timeblock.
-
-// * Persist events between refreshes of a page
