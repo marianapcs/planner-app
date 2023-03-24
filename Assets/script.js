@@ -8,6 +8,9 @@ $(document).ready(function (){
     //create an object representing today's date and time
     var today = moment().format('dddd, MMMM Do');
 
+    //console logging to understand what the problem is
+    console.log(today);
+
     //Want to loop over the hours of the day from 9-17h
     for(let i=9; i < 18; i++) {
 
@@ -49,7 +52,12 @@ $(document).ready(function (){
         table.append(div, userInfo, submitButton);
         mainContainer.append(table);
 
+        table.addClass('row');
 
+        //appending Div to the main container
+        mainContainer.append(table);
+
+        userInfo.val(localStorage.getItem('ButtonClick'+(i-1)));
     }
 
 
