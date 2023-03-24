@@ -1,10 +1,8 @@
-# planner-app
+# Work Day Scheduler
 
-## Your Task
+## Description
 
-Create a simple calendar application that allows a user to save events for each hour of the day by modifying starter code. This app will run in the browser and feature dynamically updated HTML and CSS powered by jQuery.
-
-You'll need to use the [Moment.js](https://momentjs.com/) library to work with date and time. Be sure to read the documentation carefully and concentrate on using Moment.js in the browser.
+A simple work day scheduler application that allows you to enter and save events for each hour of a standard working day. The application colour codes the time blocks based on whether the hour has passed, whether it is the hour or future hours. It also shows the current day at the top of the page. 
 
 ## User Story
 
@@ -14,71 +12,17 @@ I WANT to add important events to a daily planner
 SO THAT I can manage my time effectively
 ```
 
-## Acceptance Criteria
-
-The app should:
-
-* Display the current day at the top of the calender when a user opens the planner.
- 
-* Present timeblocks for standard business hours when the user scrolls down.
- 
-* Color-code each timeblock based on past, present, and future when the timeblock is viewed.
- 
-* Allow a user to enter an event when they click a timeblock
-
-* Save the event in local storage when the save button is clicked in that timeblock.
-
-* Persist events between refreshes of a page
-
-The following animation demonstrates the application functionality:
-
-![A user clicks on slots on the color-coded calendar and edits the events.](./images/05-third-party-apis-homework-demo.gif)
+## Screenshots
 
 
-## Grading Requirements
 
-This homework is graded based on the following criteria: 
 
-### Technical Acceptance Criteria: 40%
+## Links 
 
-* Satisfies all of the above acceptance criteria plus the following:
+## Credits 
+This app was created by Mariana Pritchard using: HTML, CSS, JS and moment.js library. It was achieved by A LOT of stack overflow help and support from my cohort. 
 
-  * Uses a date utility library to work with date and time
+## License
 
-### Deployment: 32%
+This project is licensed under the MIT License. 
 
-* Application deployed at live URL
-
-* Application loads with no errors
-
-* Application GitHub URL submitted
-
-* GitHub repo contains application code
-
-### Application Quality: 15%
-
-* Application user experience is intuitive and easy to navigate
-
-* Application user interface style is clean and polished
-
-* Application resembles the mock-up functionality provided in the homework instructions
-
-### Repository Quality: 13%
-
-* Repository has a unique name
-
-* Repository follows best practices for file structure and naming conventions
-
-* Repository follows best practices for class/id naming conventions, indentation, quality comments, etc.
-
-* Repository contains multiple descriptive commit messages
-
-* Repository contains quality README file with description, screenshot, and link to deployed application
-
-## Review
-
-You are required to submit the following for review:
-
-* The URL of the deployed application
-
-* The URL of the GitHub repository, with a unique name and a README describing the project

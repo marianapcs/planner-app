@@ -6,35 +6,35 @@ $(document).ready(function (){
     var currentDay = $('#currentDay');
 
     //create an object representing today's date and time
-    var today = moment();
+    var today = moment()
 
     //console logging to understand what the problem is
-    console.log(today.format('dddd,MMMM Do'));
+    console.log(today.format('dddd,MMMM Do'))
 
-    var currentHour = parseInt(today.format('H'));
+    var currentHour = parseInt(today.format('H'))
 
-    currentDay.text(today.format('dddd, MMMM Do'));
+    currentDay.text(moment().format('dddd, MMMM Do'))
 
     
     //Want to loop over the hours of the day from 9-17h
-    for(let i=9; i < 18; i++) {
+    for(i=9; i < 18; i++) {
         
         //convert the hour to a moment object and store it in a var 
-        var timeMoment = moment(i, ['HH']); 
+        var timeMoment = parseInt((moment(i, ['HH']).format("H"))); 
         
         
-        console.log(timeMoment.format('h A'));
+        // console.log(timeMoment.format('h A'));
         
-        var table = $('<div>');
+        var table = $("<div>");
 
-        var hour = $('<div>');
-        hour.addClass('hours');
-        var timeText = $("<p>");
+        var hours = $("<div>");
+        hours.addClass("hour");
+        var hoursText = $("<p>");
        
 
 
-        timeText.text(timeMoment.format('h A'));
-        timeText.append(timeText);
+        hoursText.text(moment(i, ['H']).format('h A'));
+        hoursText.append(hoursText);
 
         var userInfo = $("<input>");
         userInfo.val(localStorage.getItem(`ButtonClick${i-9}`))
@@ -56,27 +56,23 @@ $(document).ready(function (){
         var submitButton =$("<button>");
         submitButton.addClass("saveBtn");
         submitButton.text("Add");
-        submitButton.attr("buttonnum", i-9);
+       $(submitButton).attr("buttonnum", i-9);
         
          // append timeText, userInfo and submitButton to the div
-         table.append(hour);
+         table.append(hours);
          table.append(userInfo);
          table.append(submitButton);
 
          
          table.addClass('row');
-        //  row.append(div);
-
-         userInfo.val(localStorage.getItem('ButtonClick'+(i-1)));
-
+         //  row.append(div);
          //appending Div to the main container
          mainContainer.append(table);
-     }
 
-
-
-
-
+         
+        }
+        
+        userInfo.val(localStorage.getItem('ButtonClick'+i-1));
 
             //  var row = $('<div>').addClass('row');
 
@@ -89,19 +85,15 @@ $(document).ready(function (){
             
             //class for the input element based on time
 
-
-        
-
-
         // * Save the event in local storage when the save button is clicked in that timeblock.
         $('.saveBtn').click(function(event){
             const buttonPressed = this.getAttribute("buttonnum");
 
-            const relativeInput = $('#container').children().eq(buttonPressed).children().eq(1).val();
+            const relativeInput = $('.container').children().eq(buttonPressed).children().eq(1).val();
 
 
             // * Persist events between refreshes of a page
-            localStorage.setItem(`ButtonClick${buttonPressed}`, relativeInput);
+            localStorage.setItem('ButtonClick' + buttonPressed, relativeInput)
         });
     });
  
