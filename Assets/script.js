@@ -15,62 +15,64 @@ $(document).ready(function (){
 
     currentDay.text(today.format('dddd, MMMM Do'));
 
-    //Want to loop over the hours of the day from 9-17h
-    for(let i=9; i < 18; i++) {
+    var table = $('<div>').addClass('time-block');
 
 
-        //convert the hour to a moment object and store it in a var 
-        var timeMoment = moment(i, ['HH']); 
-    
-
-        console.log(timeMoment.format('h A'));
-
-        //create a div to hold the time slots, an text box and a submit button
-
-        var table = $('<div>').addClass('time-block');
-
-        //another div for the time 
-   
-        var div =  $('<div>').addClass("hour");
-
-        //para element for time label 
-        var timeText = $("<p>").text(timeMoment.format('h A'));
-        div.append(timeText);
-
-        //input element for users info for each time slot
-        var userInfo = $("<input>").val(localStorage.getItem(`ButtonClick${i-9}`));
 
 
-        console.log(userInfo);
 
-        // * Present timeblocks for standard business hours when the user scrolls down.
+        //Want to loop over the hours of the day from 9-17h
+        for(let i=9; i < 18; i++) {
+
+             var row = $('<div>').addClass('row');
+            //convert the hour to a moment object and store it in a var 
+            var timeMoment = moment(i, ['HH']); 
         
-        //class for the input element based on time
 
-        if (timeMoment < today) {
-            userInfo.addClass("past userinfo");
-        } else if (timeMoment === today) {
-            userInfo.addClass("present userinfo");
-        } else{
-            userInfo.addClass("future userinfo");
+            console.log(timeMoment.format('h A'));
+
+            //create a div to hold the time slots, an text box and a submit button
+            var div =  $('<div>').addClass("hour");
+            //para element for time label 
+            var timeText = $("<p>").text(timeMoment.format('h A'));
+            div.append(timeText);
+            //input element for users info for each time slot
+            var userInfo = $("<input>").val(localStorage.getItem(`ButtonClick${i-9}`));
+            //need to create a button for users to save info
+            var submitButton =$("<button>").addClass("saveBtn").text("Add").attr("buttonnum", i-9);
+
+
+            console.log(userInfo);
+
+            // * Present timeblocks for standard business hours when the user scrolls down.
+            
+            //class for the input element based on time
+
+            if (timeMoment < today) {
+                userInfo.addClass("past userinfo");
+            } else if (timeMoment === today) {
+                userInfo.addClass("present userinfo");
+            } else{
+                userInfo.addClass("future userinfo");
+            }
+            
+            console.log(userInfo);
+
+            console.log(submitButton);
+           
+            // append timeText, userInfo and submitButton to the div
+            div.append(timeText, userInfo, submitButton);
+            row.append(div);
+            table.append(row);
+
+            userInfo.val(localStorage.getItem('ButtonClick'+(i-1)));
+
+            //appending Div to the main container
         }
+            mainContainer.append(table);
+
         
-        console.log(userInfo);
-        //need to create a button for users to save info
-        const submitButton =$("<button>").addClass("saveBtn").text("Add").attr("buttonnum", i-9);
 
-        console.log(submitButton);
-        //nothing showing up so need to append the elements to the table and append the table to the main container
-
-        table.append(div, userInfo, submitButton);
-        table.addClass('row');
-        //appending Div to the main container
-        mainContainer.append(table);
-
-    
-
-        userInfo.val(localStorage.getItem('ButtonClick'+(i-1)));
-    }
 
         // * Save the event in local storage when the save button is clicked in that timeblock.
         $('.saveBtn').click(function(event){
