@@ -9,7 +9,7 @@ $(document).ready(function (){
     var today = moment();
 
     //console logging to understand what the problem is
-    console.log(today);
+    console.log(today.format('dddd,MMMM Do'));
 
     var currentHour = parseInt(today.format('H'));
 
@@ -18,21 +18,23 @@ $(document).ready(function (){
     //Want to loop over the hours of the day from 9-17h
     for(let i=9; i < 18; i++) {
 
-        //need to convert the hour to an integer and store it in a variable
-        var timeI = parseInt((moment(i, ['HH']).format ('H')));
 
-        console.log(timeI);
+        //convert the hour to a moment object and store it in a var 
+        var timeMoment = moment(i, ['HH']); 
+    
+
+        console.log(timeMoment.format('h A'));
 
         //create a div to hold the time slots, an text box and a submit button
 
-        var table = $('<div>');
+        var table = $('<div>').addClass('time-block');
 
         //another div for the time 
    
         var div =  $('<div>').addClass("hour");
 
         //para element for time label 
-        var timeText = $("<p>").text(moment(i, ["HH"]).format ("h A"));
+        var timeText = $("<p>").text(timeMoment.format('h A'));
         div.append(timeText);
 
         //input element for users info for each time slot
@@ -45,9 +47,9 @@ $(document).ready(function (){
         
         //class for the input element based on time
 
-        if (timeI < today) {
+        if (timeMoment < today) {
             userInfo.addClass("past userinfo");
-        } else if (timeI === today) {
+        } else if (timeMoment === today) {
             userInfo.addClass("present userinfo");
         } else{
             userInfo.addClass("future userinfo");
@@ -61,14 +63,14 @@ $(document).ready(function (){
         //nothing showing up so need to append the elements to the table and append the table to the main container
 
         table.append(div, userInfo, submitButton);
-        mainContainer.append(table);
-
         table.addClass('row');
-
         //appending Div to the main container
         mainContainer.append(table);
 
+    
+
         userInfo.val(localStorage.getItem('ButtonClick'+(i-1)));
+    }
 
         // * Save the event in local storage when the save button is clicked in that timeblock.
         $('.saveBtn').click(function(event){
@@ -80,11 +82,7 @@ $(document).ready(function (){
             // * Persist events between refreshes of a page
             localStorage.setItem(`ButtonClick${buttonPressed}`, relativeInput);
         });
-    }
-
-
-    
-});
+    });
  
  
 // * Color-code each timeblock based on past, present, and future when the timeblock is viewed.
