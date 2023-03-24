@@ -14,10 +14,12 @@ SO THAT I can manage my time effectively
 
 ## Screenshots
 
-
+![Webpage Screenshot](planner-app/Assets/screenshot.png)
 
 
 ## Links 
+
+You can find the webpage [here](https://marianapcs.github.io/planner-app/)
 
 ## Credits 
 This app was created by Mariana Pritchard using: HTML, CSS, JS and moment.js library. It was achieved by A LOT of stack overflow help and support from my cohort. 
