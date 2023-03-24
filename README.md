@@ -14,7 +14,7 @@ SO THAT I can manage my time effectively
 
 ## Screenshots
 
-![Webpage Screenshot](planner-app/Assets/screenshot.png)
+![Webpage Screenshot](./Assets/screenshot.png)
 
 
 ## Links 
