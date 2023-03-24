@@ -17,6 +17,8 @@ $(document).ready(function (){
         //need to convert the hour to an integer and store it in a variable
         var timeI = parseInt((moment(i, ['HH']).format ('H')));
 
+        console.log(timeI);
+
         //create a div to hold the time slots, an text box and a submit button
 
         var table = $('<div>');
@@ -32,6 +34,9 @@ $(document).ready(function (){
         //input element for users info for each time slot
         var userInfo = $("<input>").val(localStorage.getItem(`ButtonClick${i-9}`));
 
+
+        console.log(userInfo);
+
         // * Present timeblocks for standard business hours when the user scrolls down.
         
         //class for the input element based on time
@@ -44,9 +49,11 @@ $(document).ready(function (){
             userInfo.addClass("future userinfo");
         }
         
+        console.log(userInfo);
         //need to create a button for users to save info
         const submitButton =$("<button>").addClass("saveBtn").text("Add").attr("buttonnum", i-9);
 
+        console.log(submitButton);
         //nothing showing up so need to append the elements to the table and append the table to the main container
 
         table.append(div, userInfo, submitButton);
